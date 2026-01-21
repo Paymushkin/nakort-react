@@ -13,14 +13,16 @@ export const useModal = (modalType: string) => {
       }
     };
 
-    const handleClose = () => {
+    const handleClose = (e: CustomEvent) => {
+      if (e.detail !== modalType) return;
       setIsOpen(false);
       document.body.style.overflow = '';
     };
 
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isOpen) {
-        handleClose();
+        setIsOpen(false);
+        document.body.style.overflow = '';
       }
     };
 

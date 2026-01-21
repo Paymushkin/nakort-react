@@ -43,6 +43,17 @@ const Hero: React.FC = () => {
     <section className={styles.hero} itemScope itemType="https://schema.org/WebPageElement">
       <div className={styles.heroCarousel} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         <div className={styles.heroSlides}>
+          <div className={styles.heroSlideBg}>
+            <Image
+              src="/img/hero/bg.webp"
+              alt=""
+              fill
+              priority
+              quality={90}
+              sizes="100vw"
+              style={{ objectFit: 'cover', objectPosition: 'top center' }}
+            />
+          </div>
           {slides.map((slide, index) => (
             <div
               key={index}
@@ -52,29 +63,6 @@ const Hero: React.FC = () => {
                 index > currentSlide ? styles.heroSlideNext : ''
               }`}
             >
-              <div className={styles.heroSlideBg}>
-                {index === 0 ? (
-                  <Image
-                    src="/img/hero/bg.webp"
-                    alt=""
-                    fill
-                    priority
-                    quality={90}
-                    sizes="100vw"
-                    style={{ objectFit: 'cover', objectPosition: 'top center' }}
-                  />
-                ) : (
-                  <Image
-                    src="/img/hero/bg.webp"
-                    alt=""
-                    fill
-                    quality={90}
-                    sizes="100vw"
-                    style={{ objectFit: 'cover', objectPosition: 'top center' }}
-                    loading="lazy"
-                  />
-                )}
-              </div>
               <div className="container">
                 <div className={styles.heroContent}>
                   <h1 className={styles.heroTitle} itemProp="headline">

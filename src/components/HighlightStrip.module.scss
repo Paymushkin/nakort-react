@@ -23,6 +23,10 @@
   transform: scale(1) translateY(0px) translateX(0px);
 }
 
+.highlightStrip:global(.highlight-strip--visible)[data-scroll-direction='reverse'] .highlightStripShape {
+  transform: scale(0.4) translateY(6%) translateX(23%);
+}
+
 .highlightStripInner {
   display: flex;
   align-items: center;

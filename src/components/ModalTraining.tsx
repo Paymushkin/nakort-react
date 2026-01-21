@@ -1,56 +1,22 @@
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import Button from './Button';
+import { useModal } from '@/hooks/useModal';
 import styles from './Modal.module.scss';
 
 const ModalTraining: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const { isOpen, close } = useModal('training');
+  const formRef = useRef<HTMLFormElement>(null);
 
-  useEffect(() => {
-    const handleOpen = (e: CustomEvent) => {
-      if (e.detail === 'training') {
-        setIsOpen(true);
-        document.body.style.overflow = 'hidden';
-      }
-    };
-
-    const handleClose = () => {
-      setIsOpen(false);
-      document.body.style.overflow = '';
-    };
-
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen) {
-        handleClose();
-      }
-    };
-
-    window.addEventListener('openModal' as any, handleOpen as EventListener);
-    window.addEventListener('closeModal' as any, handleClose as EventListener);
-    window.addEventListener('keydown', handleEscape);
-
-    return () => {
-      window.removeEventListener('openModal' as any, handleOpen as EventListener);
-      window.removeEventListener('closeModal' as any, handleClose as EventListener);
-      window.removeEventListener('keydown', handleEscape);
-    };
-  }, [isOpen]);
+  const handleClose = () => {
+    if (formRef.current) formRef.current.reset();
+    close();
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Здесь можно добавить отправку данных на сервер
-  };
-
-  const formRef = useRef<HTMLFormElement>(null);
-
-  const handleClose = () => {
-    setIsOpen(false);
-    document.body.style.overflow = '';
-    if (formRef.current) {
-      formRef.current.reset();
-    }
-    window.dispatchEvent(new CustomEvent('closeModal', { detail: 'training' }));
   };
 
   if (!isOpen) return null;

@@ -49,7 +49,7 @@ const Application: React.FC = () => {
               height={700}
               loading="lazy"
               quality={85}
-              style={{ width: 'auto', height: 'auto' }}
+              style={{ height: 'auto' }}
             />
           </div>
           <Button

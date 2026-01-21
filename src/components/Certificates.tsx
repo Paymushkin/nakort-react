@@ -201,7 +201,7 @@ const Certificates: React.FC = () => {
                   className="certificate-gift__button"
                 />
               </div>
-              <div ref={tennisGiftImageRef} className={styles.certificateGiftImage} data-scroll-position="center">
+              <div ref={tennisGiftImageRef} className={styles.certificateGiftImage} data-scroll-position="bottom" data-scroll-reverse="true">
                 <Image
                   src="/img/cert/shape-1.webp"
                   alt="Купить карту любого номинала в подарок"
@@ -332,7 +332,7 @@ const Certificates: React.FC = () => {
                   className="certificate-gift__button"
                 />
               </div>
-              <div ref={padelGiftImageRef} className={styles.certificateGiftImage} data-scroll-position="center">
+              <div ref={padelGiftImageRef} className={styles.certificateGiftImage} data-scroll-position="bottom">
                 <Image
                   src="/img/cert/shape-2.webp"
                   alt="Купить карту любого номинала в подарок"

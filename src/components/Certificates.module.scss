@@ -305,6 +305,12 @@
   rotate: 0deg;
 }
 
+.certificateGiftImage:global(.certificate-gift__image--active)[data-scroll-direction='reverse'] img {
+  top: -30%;
+  left: -1%;
+  rotate: 90deg;
+}
+
 .certificatesNav {
   position: absolute;
   top: 5px;

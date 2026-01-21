@@ -22,7 +22,12 @@ const HighlightStrip: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className={styles.highlightStrip}>
+    <section
+      ref={sectionRef}
+      className={styles.highlightStrip}
+      data-scroll-position="bottom"
+      // data-scroll-reverse="true"
+    >
       <div className={`container ${styles.highlightStripContainer}`}>
         <Image
           src="/img/general/shape-2.webp"
