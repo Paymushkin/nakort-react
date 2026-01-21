@@ -1,0 +1,32 @@
+@use '../styles/variables' as *;
+
+.promo {
+  // Стили секции
+}
+
+.promoContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.promoTitle {
+  font-variation-settings: 'wght' 700;
+  font-weight: 700;
+  font-size: 154px;
+  line-height: 1.1;
+  color: $primary-color;
+  margin: 0;
+}
+
+.promoText {
+  max-width: 652px;
+  color: $text-color;
+}
+
+.promoTextLine {
+  line-height: 1.8;
+  margin: 0;
+}
+

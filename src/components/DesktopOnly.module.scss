@@ -1,0 +1,41 @@
+@use '../styles/variables' as *;
+
+.desktopOnlyOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $bg-color;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.desktopOnlyOverlayContent {
+  text-align: center;
+  padding: 40px;
+  max-width: 500px;
+}
+
+.desktopOnlyOverlayIcon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 30px;
+  color: $primary-color;
+}
+
+.desktopOnlyOverlayTitle {
+  color: $text-color;
+  margin-bottom: 20px;
+}
+
+.desktopOnlyOverlayText {
+  color: $text-color;
+  line-height: 1.6;
+}
+
+
+
+

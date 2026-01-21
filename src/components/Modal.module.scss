@@ -1,0 +1,232 @@
+@use '../styles/variables' as *;
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+
+  &Active {
+    display: flex;
+  }
+}
+
+.modalOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+}
+
+.modalContent {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background-color: $bg-color;
+  border-radius: 30px;
+  padding: 48px;
+  z-index: 1;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modalClose {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: $text-color;
+  transition: color 0.3s ease;
+  z-index: 10;
+
+  &:hover {
+    color: $primary-color;
+  }
+
+  svg {
+    width: 46px;
+    height: 46px;
+  }
+}
+
+.modalTitle {
+  font-variation-settings: 'wght' 700;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.1;
+  color: $primary-color;
+  margin: 32px 0;
+}
+
+.modalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.modalSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modalSectionTitle {
+  color: rgba(255, 255, 255, 0.50);
+  font-size: 16px;
+  font-variation-settings: 'wght' 600;
+  font-weight: 600;
+  line-height: 110%;
+  margin: 0;
+}
+
+.modalField {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modalSelectWrapper {
+  position: relative;
+}
+
+.modalSelect {
+  width: 100%;
+  padding: 12px 16px;
+  padding-right: 48px;
+  background-color: $bg-color;
+  border: 1px solid $primary-color;
+  border-radius: 30px;
+  color: $text-color;
+  font-family: $font-primary, sans-serif;
+  font-size: 16px;
+  appearance: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba(235, 255, 0, 0.1);
+  }
+
+  option {
+    background-color: $bg-color;
+    color: $text-color;
+  }
+}
+
+.modalSelectArrow {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 21px;
+    height: 21px;
+    color: $primary-color;
+  }
+}
+
+.modalInput {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: $bg-color;
+  border: 1px solid $primary-color;
+  border-radius: 30px;
+  color: $text-color;
+  font-family: $font-primary, sans-serif;
+  font-size: 16px;
+  transition: all 0.3s ease;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba(235, 255, 0, 0.1);
+  }
+}
+
+.modalCheckbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.modalCheckboxInput {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  cursor: pointer;
+  accent-color: $primary-color;
+  border-radius: 8px;
+  appearance: none;
+  border: 2px solid $text-color;
+  background-color: transparent;
+  position: relative;
+  transition: all 0.3s ease;
+
+  &:checked {
+    border-color: $primary-color;
+    background-color: $primary-color;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: $bg-color;
+    }
+  }
+}
+
+.modalCheckboxLabel {
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.50);
+  cursor: pointer;
+}
+
+.modalLink {
+  text-decoration: underline;
+  transition: color 0.3s ease;
+  color: inherit;
+
+  &:hover {
+    color: $primary-color;
+  }
+}
+
+.modalSubmit {
+  width: 100%;
+  margin-top: 8px;
+}

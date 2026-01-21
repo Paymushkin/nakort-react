@@ -1,0 +1,140 @@
+@use '../styles/variables' as *;
+
+.application {
+  position: relative;
+}
+
+.applicationContent {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.applicationTitle {
+  color: $text-color;
+}
+
+.applicationImg {
+  position: relative;
+  flex: 0 1 50%;
+  max-width: 350px;
+  z-index: 1;
+}
+
+.applicationImgLoader {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  background-color: $bg-color;
+  border-radius: 30px 30px 0 0;
+  opacity: 1;
+  z-index: 2;
+  color: $primary-color;
+
+  svg {
+    width: 53px;
+    height: 53px;
+  }
+}
+
+.applicationImg:global(.application__img--visible) .applicationImgLoader {
+  animation: fadeOut 1s ease 2s forwards;
+
+  svg {
+    animation: pulse 2s ease-in-out;
+  }
+}
+
+.applicationButton {
+  width: clamp(200px, 325px, 100%);
+  justify-self: end;
+  align-self: center;
+}
+
+.applicationMarquee {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 0;
+  overflow: hidden;
+  width: 100%;
+  background-color: $bg-secondary;
+  backdrop-filter: blur(15px);
+  z-index: 10;
+}
+
+.applicationMarqueeTrack {
+  display: flex;
+  gap: 24px;
+  animation: marquee 30s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.applicationMarqueeItem {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    color: $text-color;
+    background-color: $bg-secondary;
+    border-radius: 20px;
+    border: 1px solid $primary-color;
+    font-size: 16px;
+  }
+
+  svg {
+    width: 27px;
+    height: 40px;
+    color: $primary-color;
+    flex-shrink: 0;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+

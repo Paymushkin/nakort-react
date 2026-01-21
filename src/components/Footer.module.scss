@@ -1,0 +1,209 @@
+@use '../styles/variables' as *;
+
+.footer {
+  padding: 3rem 0;
+}
+
+.footerContent {
+  display: flex;
+  flex-direction: column;
+  gap: 84px;
+}
+
+.footerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.footerTopNav {
+  &List {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    line-height: 1;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &Item {
+    line-height: 1;
+  }
+
+  &Link {
+    position: relative;
+    display: inline-block;
+    color: $text-color;
+    font-family: $font-primary, sans-serif;
+    font-variation-settings: 'wght' 500;
+    font-weight: 500;
+    line-height: 1;
+    transition: all 0.3s ease;
+    text-decoration: none;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: -15px;
+      top: 50%;
+      transform: translateY(-50%) translateX(-15px);
+      width: 10px;
+      height: 10px;
+      background-image: url('../img/icons/ball.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0;
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+
+    &:hover {
+      color: $primary-color;
+
+      &::before {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+      }
+    }
+  }
+}
+
+.footerTopContacts {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &Title {
+    font-size: 20px;
+    font-variation-settings: 'wght' 700;
+    font-weight: 700;
+    color: $text-color;
+    margin: 0;
+  }
+
+  &List {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    line-height: 1;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &Link {
+    color: $text-color;
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+
+  &Social {
+    &List {
+      display: flex;
+      align-items: center;
+      gap: 35px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    &Item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &Link {
+      display: inline-block;
+      transition: all 0.3s ease;
+      color: $text-color;
+
+      svg {
+        transition: fill 0.3s ease;
+        width: 42px;
+        height: 42px;
+      }
+
+      &:hover {
+        svg path {
+          fill: $primary-color;
+        }
+      }
+    }
+  }
+}
+
+.footerTopDisclaimer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &Text {
+    font-size: 12px;
+    font-weight: 500;
+    color: $text-color;
+  }
+}
+
+.footerTopOffer {
+  // Стили предложения
+}
+
+.footerBottom {
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footerBottomNav {
+  // Стили нижней навигации
+}
+
+.footerBottomList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.footerBottomItem {
+  // Стили элемента нижней навигации
+}
+
+.footerBottomLink {
+  position: relative;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  &:hover {
+    color: $primary-color;
+
+    &::before {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+  }
+}

@@ -1,0 +1,343 @@
+@use '../styles/variables' as *;
+
+.pricing {
+  margin: 200px 0;
+}
+
+.pricingTitle {
+  margin-bottom: 36px;
+  color: $text-color;
+}
+
+.pricingTabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 48px;
+}
+
+.pricingTab {
+  padding: 10px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 40px;
+  background: transparent;
+  color: $text-color;
+  font-family: $font-primary, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &Active {
+    border-color: $primary-color;
+    background-color: $bg-secondary;
+
+    &[data-tab="padel"] {
+      border-color: $secondary-color;
+      background-color: $bg-secondary;
+    }
+  }
+
+  &:hover {
+    border-color: $primary-color;
+    color: $primary-color;
+
+    &[data-tab="padel"] {
+      border-color: $secondary-color;
+      color: $secondary-color;
+    }
+  }
+}
+
+.pricingContent {
+  // Стили контента
+}
+
+.pricingPanel {
+  display: none;
+
+  &Active {
+    display: block;
+  }
+}
+
+.pricingGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.pricingCard {
+  position: relative;
+  display: grid;
+  overflow: visible;
+
+  &:hover {
+    .cardPricingFront {
+      transform: translateY(150px);
+    }
+
+    .cardPricingBack {
+      color: #000;
+      background-color: $primary-color;
+
+      &.cardPricingBackPadel {
+        color: $text-color;
+        background-color: $secondary-color;
+      }
+    }
+
+    .cardPricingShape1,
+    .cardPricingShape4 {
+      transform: scale(1.1);
+      right: -28%;
+    }
+
+    .cardPricingShape2-1 {
+      top: 0%;
+      left: 0%;
+      transform: scale(1);
+    }
+
+    .cardPricingShape3 {
+      transform: scale(1.1);
+      transform-origin: bottom center;
+    }
+
+    .cardPricingShape3-1 {
+      top: -110%;
+    }
+
+    .cardPricingShape5-1 {
+      top: 40%;
+      left: 37%;
+      transform: scale(1.05);
+    }
+
+    .cardPricingShape6 {
+      transform: translate(-50%, -50%) scale(1.85);
+    }
+  }
+}
+
+.cardPricingBack {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 36px 60px;
+  border-radius: 30px 30px 0 0;
+  color: $text-color;
+  background-color: $bg-secondary;
+  transition: background-color 1s cubic-bezier(0.165, 0.840, 0.440, 1.000);
+}
+
+.cardPricingBackPadel {
+  // Стили для падел
+}
+
+.cardPricingTitle {
+  font-variation-settings: 'wght' 600;
+  font-weight: 600;
+  font-size: 45px;
+  transition: color 1s cubic-bezier(0.165, 0.840, 0.440, 1.000);
+  margin: 0;
+}
+
+.cardPricingSubtitle {
+  padding: 10px 20px;
+  font-variation-settings: 'wght' 500;
+  font-weight: 500;
+  font-size: 16px;
+  border: 1px solid currentColor;
+  border-radius: 20px;
+  transition: border-color, color 1s cubic-bezier(0.165, 0.840, 0.440, 1.000);
+}
+
+.cardPricingFront {
+  z-index: 1;
+  transform: translateY(89px);
+  transition: transform 1s cubic-bezier(0.165, 0.840, 0.440, 1.000);
+  cursor: pointer;
+}
+
+.cardPricingShapeContainer {
+  position: relative;
+  height: 280px;
+  background-color: #000;
+  border-radius: 30px 30px 0 0;
+  overflow: hidden;
+}
+
+.cardPricingShape {
+  position: absolute;
+  transition: all 1s cubic-bezier(0.165, 0.840, 0.440, 1.000);
+}
+
+.cardPricingShape1,
+.cardPricingShape4 {
+  top: 0;
+  right: -35%;
+  transform: scale(0.7);
+}
+
+.cardPricingShape2 {
+  bottom: 0;
+  right: 0;
+}
+
+.cardPricingShape2-1 {
+  top: -40%;
+  left: -35%;
+  transform: scale(0.5);
+}
+
+.cardPricingShape3 {
+  bottom: -110%;
+  left: 0;
+  transform-origin: bottom center;
+}
+
+.cardPricingShape3-1 {
+  top: -135%;
+  left: 0;
+  transform-origin: top center;
+}
+
+.cardPricingShape5-1 {
+  top: 50%;
+  left: 0%;
+  transform: scale(0.7);
+}
+
+.cardPricingShape6 {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cardPricingPromo {
+  position: absolute;
+  top: 33%;
+  left: -11%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: $primary-color;
+  border-radius: 60px;
+  padding: 12px 42px;
+  color: #000;
+  line-height: 1.1;
+  transform: rotate(0deg);
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.cardPricingPromoPadel {
+  background-color: #F9A08F;
+}
+
+.cardPricingPromoValue {
+  font-variation-settings: 'wght' 600;
+  font-weight: 600;
+  font-size: 26px;
+}
+
+.cardPricingPromoLabel {
+  font-variation-settings: 'wght' 600;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.cardPricingContent {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 32px 36px;
+  color: #000;
+  background-color: $white;
+  border-radius: 0 0 30px 30px;
+}
+
+.singlePrice {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: rgba(0, 0, 0, 0.70);
+}
+
+.singlePriceValue {
+  font-variation-settings: 'wght' 600;
+  font-weight: 600;
+  font-size: 36px;
+}
+
+.singlePriceDescription {
+  font-variation-settings: 'wght' 400;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.multiplePrice {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.multiplePriceValue {
+  font-variation-settings: 'wght' 600;
+  font-weight: 600;
+  font-size: 45px;
+}
+
+.multiplePriceDescription {
+  font-variation-settings: 'wght' 400;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.multiplePriceDiscount {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  color: #000;
+  background-color: $primary-color;
+  border-radius: 40px;
+  border: 2px solid #000;
+  font-variation-settings: 'wght' 900;
+  font-weight: 900;
+  font-size: 16px;
+  padding: 10px 20px;
+}
+
+.multiplePriceDiscountPadel {
+  background-color: $secondary-color;
+  color: $text-color;
+}
+
+.pricingNote {
+  text-align: right;
+  font-variation-settings: 'wght' 600;
+  font-weight: 600;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.25);
+  margin: 0;
+}
+
+.cardPricingContent :global(.pricing__button) {
+  width: 100%;
+
+  &:hover {
+    background-color: #000;
+    color: $primary-color;
+  }
+}
+
+.pricingCard:global(.card-pricing--active) .cardPricingPromo {
+  transform: rotate(-10deg);
+}

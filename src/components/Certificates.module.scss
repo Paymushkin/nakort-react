@@ -1,0 +1,396 @@
+@use '../styles/variables' as *;
+
+.certificates {
+  margin-bottom: 200px;
+  overflow: visible;
+}
+
+.certificatesContainer {
+  position: relative;
+  overflow: visible;
+
+  &.container {
+    overflow: visible;
+  }
+}
+
+.certificatesHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.certificatesTitle {
+  margin: 0;
+  color: $text-color;
+}
+
+.certificatesTabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 46px;
+}
+
+.certificatesTab {
+  padding: 10px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 40px;
+  background: transparent;
+  color: $text-color;
+  font-family: $font-primary, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &Active {
+    border-color: $primary-color;
+    background-color: $bg-secondary;
+
+    &[data-tab="padel"] {
+      border-color: $secondary-color;
+      background-color: $bg-secondary;
+    }
+  }
+
+  &:hover {
+    border-color: $primary-color;
+    color: $primary-color;
+
+    &[data-tab="padel"] {
+      border-color: $secondary-color;
+      color: $secondary-color;
+    }
+  }
+}
+
+.certificatesContent {
+  overflow: visible;
+}
+
+.certificatesPanel {
+  display: none;
+  overflow: visible;
+
+  &Active {
+    display: block;
+  }
+}
+
+.certificatesWrapper {
+  position: relative;
+  overflow: visible;
+}
+
+.certificatesCarousel {
+  position: relative;
+  overflow: visible!important;
+
+  &.swiper {
+    overflow: visible;
+  }
+
+  :global(.swiper-wrapper) {
+    padding-bottom: 150px;
+    overflow: visible;
+  }
+
+  :global(.swiper-slide) {
+    overflow: visible;
+  }
+}
+
+.certificatesSlide {
+  height: auto;
+}
+
+.certificatesCard {
+  position: relative;
+  display: grid;
+  overflow: visible;
+
+  &:hover {
+    .certificateCardFront {
+      transform: translateY(150px);
+    }
+
+    .certificateCardBack {
+      color: #000;
+      background-color: $primary-color;
+
+      &.certificateCardBackPadel {
+        color: $text-color;
+        background-color: $secondary-color;
+      }
+    }
+  }
+}
+
+.certificateCardBack {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 36px 60px;
+  border-radius: 30px 30px 0 0;
+  color: $text-color;
+  background-color: rgba(204, 204, 204, 0.25);
+  transition: background-color 1s cubic-bezier(0.165, 0.840, 0.440, 1.000);
+}
+
+.certificateCardBackPadel {
+  // Стили для падел
+}
+
+.certificateCardTitle {
+  font-variation-settings: 'wght' 600;
+  font-weight: 600;
+  font-size: 45px;
+  transition: color 1s cubic-bezier(0.165, 0.840, 0.440, 1.000);
+  margin: 0;
+}
+
+.certificateCardSubtitle {
+  padding: 10px 20px;
+  font-variation-settings: 'wght' 500;
+  font-weight: 500;
+  font-size: 16px;
+  border: 1px solid currentColor;
+  border-radius: 20px;
+  transition: border-color, color 1s cubic-bezier(0.165, 0.840, 0.440, 1.000);
+}
+
+.certificateCardFront {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 36px;
+  background-color: #1f1f1f;
+  border-radius: 30px;
+  overflow: hidden;
+  z-index: 1;
+  transform: translateY(89px);
+  transition: transform 1s cubic-bezier(0.165, 0.840, 0.440, 1.000);
+  cursor: pointer;
+}
+
+.certificateCardTags {
+  display: flex;
+  gap: 8px;
+}
+
+.certificateCardTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  font-family: $font-primary, sans-serif;
+  font-size: 16px;
+  color: $text-color;
+  width: fit-content;
+
+  svg {
+    width: 23px;
+    height: 23px;
+    color: $text-color;
+    flex-shrink: 0;
+  }
+}
+
+.certificateCardBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+}
+
+.certificateCardPrice {
+  font-family: $font-primary, sans-serif;
+  font-variation-settings: 'wght' 600;
+  font-weight: 600;
+  font-size: 45px;
+  line-height: 1.2;
+  color: $text-color;
+  margin-top: auto;
+}
+
+.certificateGift {
+  display: flex;
+  margin-top: 48px;
+  min-height: 377px;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.certificateGiftContent {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 22px 34px;
+  background-color: $white;
+}
+
+.certificateGiftTitle {
+  font-variation-settings: 'wght' 800;
+  font-weight: 800;
+  font-size: 60px;
+  line-height: 1;
+  color: #000;
+  margin: 0 0 16px;
+}
+
+.certificateGiftTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.certificateGiftTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  border: 1px solid #000;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #000;
+  width: fit-content;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    color: #000;
+    flex-shrink: 0;
+  }
+}
+
+.certificateGiftText {
+  color: #000;
+  margin: 0 0 24px;
+}
+
+.certificateGiftImage {
+  flex: 0 0 377px;
+  position: relative;
+  height: 377px;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  border-radius: 0 30px 30px 0;
+  background-color: #202020;
+
+  img {
+    position: absolute;
+    top: -30%;
+    left: -1%;
+    width: 100%;
+    transform-origin: center center;
+    rotate: 90deg;
+    scale: 1.65;
+    transition: rotate 1s cubic-bezier(0.165, 0.840, 0.440, 1.000);
+  }
+}
+
+.certificateGiftImage:global(.certificate-gift__image--active) img {
+  top: -28%;
+  left: 0;
+  rotate: 0deg;
+}
+
+.certificatesNav {
+  position: absolute;
+  top: 5px;
+  right: 25px;
+  display: none;
+  justify-content: center;
+  gap: 16px;
+
+  &Active {
+    display: flex;
+  }
+
+  &Padel {
+    .certificatesNavBtn {
+      color: $secondary-color;
+
+      &:hover {
+        color: $secondary-color;
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
+.certificatesNavTennis {
+  // Стили для теннисной навигации
+}
+
+.certificatesNavPadel {
+  // Стили для падел навигации
+}
+
+.certificatesNavBtn {
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: $text-color;
+  transition: all 0.3s ease;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+
+  svg {
+    width: 14px;
+    height: 25px;
+    display: block;
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    color: $primary-color;
+  }
+
+  &.swiper-button-disabled {
+    opacity: 0.35;
+    cursor: auto;
+    pointer-events: none;
+  }
+
+  &::after,
+  &::before {
+    display: none !important;
+    content: none !important;
+  }
+
+  &Prev {
+    // Стили для предыдущей кнопки
+  }
+
+  &Next {
+    // Стили для следующей кнопки
+  }
+}
+
+.certificateCardBottom :global(.certificate-card__button) {
+  flex: 1 1 auto;
+}
+
+.certificateGiftContent :global(.certificate-gift__button) {
+  &:hover {
+    background-color: #000;
+    border-color: $secondary-color;
+  }
+}

@@ -1,0 +1,70 @@
+// Определяем анимацию ballDrop локально для этого модуля
+@keyframes ballDrop {
+  0% {
+    transform: translateY(-110px) translateX(-80px) rotate(0deg);
+    opacity: 0;
+  }
+  2% {
+    opacity: 1;
+  }
+  15% {
+    transform: translateY(0) translateX(-40px) rotate(180deg);
+  }
+  25% {
+    transform: translateY(-45px) translateX(-25px) rotate(270deg);
+  }
+  28% {
+    transform: translateY(-45px) translateX(-23px) rotate(315deg);
+  }
+  40% {
+    transform: translateY(0) translateX(-12px) rotate(330deg);
+  }
+  52% {
+    transform: translateY(-22px) translateX(-6px) rotate(345deg);
+  }
+  54% {
+    transform: translateY(-22px) translateX(-5px) rotate(350deg);
+  }
+  64% {
+    transform: translateY(0) translateX(0) rotate(352deg);
+  }
+  70% {
+    transform: translateY(-10px) translateX(0) rotate(354deg);
+  }
+  77% {
+    transform: translateY(0) translateX(0) rotate(356deg);
+  }
+  83% {
+    transform: translateY(-4px) translateX(0) rotate(358deg);
+  }
+  90% {
+    transform: translateY(0) translateX(0) rotate(359deg);
+  }
+  100% {
+    transform: translateY(0) translateX(0) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+.logo {
+  display: block;
+  overflow: visible;
+}
+
+.logoText {
+  fill: white;
+}
+
+.logoBalls {
+  transform: translateY(-110px) translateX(-80px);
+  opacity: 0;
+  transition: none;
+  transform-origin: 50% 50%;
+  transform-box: fill-box;
+  animation: ballDrop 2s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+}
+
+.logoBall {
+  fill: #ebff00;
+}
+

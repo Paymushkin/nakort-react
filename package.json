@@ -1,0 +1,36 @@
+{
+  "name": "nakort-react",
+  "version": "1.0.0",
+  "description": "NAKORT - Теннисный клуб на Next.js с оптимизацией для SEO и производительности",
+  "private": true,
+  "scripts": {
+    "dev": "SASS_SILENCE_DEPRECATIONS=legacy-js-api next dev",
+    "dev:turbo": "SASS_SILENCE_DEPRECATIONS=legacy-js-api next dev --turbo",
+    "dev:no-cache": "rm -rf .next && SASS_SILENCE_DEPRECATIONS=legacy-js-api next dev",
+    "build": "SASS_SILENCE_DEPRECATIONS=legacy-js-api next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^14.2.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "swiper": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "sass": "^1.69.5",
+    "typescript": "^5.3.0"
+  },
+  "keywords": [
+    "tennis",
+    "club",
+    "nextjs",
+    "react",
+    "seo"
+  ],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,28 @@
+// Импорты базовых файлов
+@use 'variables' as *;
+@use 'mixins' as *;
+@use 'base';
+@use 'typography';
+@use 'animations';
+
+// Импорты компонентов
+@use 'components/utilities';
+@use 'components/header';
+@use 'components/hero';
+@use 'components/about';
+@use 'components/features';
+@use 'components/highlight-strip';
+@use 'components/application';
+@use 'components/reviews';
+@use 'components/pricing';
+@use 'components/certificates';
+@use 'components/faq';
+@use 'components/modal';
+@use 'components/desktop-only';
+@use 'components/footer';
+@use 'components/activities';
+@use 'components/activity-card';
+
+
+
+

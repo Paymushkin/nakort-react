@@ -1,0 +1,75 @@
+@use '../styles/variables' as *;
+
+.highlightStrip {
+  position: relative;
+  margin: 78px 0;
+}
+
+.highlightStripContainer {
+  position: relative;
+}
+
+.highlightStripShape {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: scale(0.4) translateY(6%) translateX(23%);
+  transform-origin: right top;
+  z-index: -1;
+  transition: transform 1s cubic-bezier(0.165, 0.840, 0.440, 1.000);
+}
+
+.highlightStrip:global(.highlight-strip--visible) .highlightStripShape {
+  transform: scale(1) translateY(0px) translateX(0px);
+}
+
+.highlightStripInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 34px 36px;
+  border-radius: 30px;
+  background: $bg-secondary;
+}
+
+.highlightStripBrand {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.highlightStripText {
+  color: $text-color;
+  max-width: 315px;
+}
+
+.highlightStripDots {
+  display: flex;
+}
+
+.highlightStripDot {
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  border: 2px solid $primary-color;
+  background-color: $bg-color;
+
+  &:nth-child(2) {
+    transform: translateX(-12px);
+  }
+
+  &:nth-child(3) {
+    transform: translateX(-24px);
+  }
+}
+
+.highlightStripAction {
+  flex-shrink: 0;
+}
+
+.highlightStripAction :global(.highlight-strip__button) {
+  white-space: nowrap;
+}
+

@@ -1,0 +1,164 @@
+@use '../styles/variables' as *;
+
+// Базовые стили кнопки (только структура, без цветов и фона)
+.btn {
+  position: relative;
+  display: flex;
+  height: 60px;
+  padding: 15px 55px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 40px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-family: $font-primary, sans-serif;
+  // Убираем базовые цвета, чтобы модификаторы работали
+  background-color: transparent;
+  color: inherit;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: all 0.3s 0.2s ease-in-out;
+    background-color: transparent;
+  }
+}
+
+.btnText {
+  color: currentColor;
+  font-family: $font-primary, sans-serif;
+  font-variation-settings: 'wght' 600;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+// Модификаторы как CSS Modules классы
+.btnPrimary {
+  background-color: #ebff00;
+  border: 1px solid transparent;
+  color: #000;
+
+  &::before {
+    background-color: $primary-color;
+  }
+
+  .btnText {
+    color: #000;
+  }
+
+  &:hover {
+    background-color: transparent;
+    border-color: $primary-color;
+    color: $primary-color;
+
+    &::before {
+      opacity: 1;
+      transform: translateY(-50%);
+      background-color: $primary-color;
+    }
+
+    .btnText {
+      color: $primary-color;
+    }
+  }
+}
+
+.btnSecondary {
+  background-color: #b63a22;
+  border: 1px solid transparent;
+  color: #fff;
+
+  &::before {
+    background-color: $secondary-color;
+  }
+
+  .btnText {
+    color: #fff;
+  }
+
+  &:hover {
+    background-color: transparent;
+    border-color: $secondary-color;
+    color: $secondary-color;
+
+    &::before {
+      opacity: 1;
+      transform: translateY(-50%);
+      background-color: $secondary-color;
+    }
+
+    .btnText {
+      color: $secondary-color;
+    }
+  }
+}
+
+.btnAdditionalPrimary {
+  background-color: #ebff00;
+  border: 1px solid transparent;
+  color: #000;
+
+  &::before {
+    background-color: $primary-color;
+  }
+
+  .btnText {
+    color: #000;
+  }
+
+  &:hover {
+    background-color: $bg-color;
+    border-color: $primary-color;
+    color: $primary-color;
+
+    &::before {
+      opacity: 1;
+      transform: translateY(-50%);
+      background-color: $primary-color;
+    }
+
+    .btnText {
+      color: $primary-color;
+    }
+  }
+}
+
+.btnAdditionalSecondary {
+  background-color: #b63a22;
+  border: 1px solid transparent;
+  color: #fff;
+
+  &::before {
+    background-color: $secondary-color;
+  }
+
+  .btnText {
+    color: #fff;
+  }
+
+  &:hover {
+    background-color: $bg-color;
+    border-color: $secondary-color;
+    color: $secondary-color;
+
+    &::before {
+      opacity: 1;
+      transform: translateY(-50%);
+      background-color: $secondary-color;
+    }
+
+    .btnText {
+      color: $secondary-color;
+    }
+  }
+}
