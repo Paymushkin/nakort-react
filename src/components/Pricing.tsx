@@ -176,9 +176,10 @@ const Pricing: React.FC = () => {
                       <div className={styles.multiplePrice}>
                         <div className={styles.multiplePriceValue}>{priceCard.items[1].price}</div>
                         <div className={styles.multiplePriceDescription}>{priceCard.items[1].label}</div>
-                        {priceCard.items[1].discount && (
-                          <div className={styles.multiplePriceDiscount}>{priceCard.items[1].discount}</div>
-                        )}
+                        {((): React.ReactNode => {
+                          const item = priceCard.items[1] as { price: string; label: string; discount?: string } | undefined;
+                          return item?.discount ? <div className={styles.multiplePriceDiscount}>{item.discount}</div> : null;
+                        })()}
                       </div>
                       <Button
                         text="Оставить заявку"
@@ -246,11 +247,10 @@ const Pricing: React.FC = () => {
                       <div className={styles.multiplePrice}>
                         <div className={styles.multiplePriceValue}>{priceCard.items[1].price}</div>
                         <div className={styles.multiplePriceDescription}>{priceCard.items[1].label}</div>
-                        {priceCard.items[1].discount && (
-                          <div className={`${styles.multiplePriceDiscount} ${styles.multiplePriceDiscountPadel}`}>
-                            {priceCard.items[1].discount}
-                          </div>
-                        )}
+                        {((): React.ReactNode => {
+                          const item = priceCard.items[1] as { price: string; label: string; discount?: string } | undefined;
+                          return item?.discount ? <div className={`${styles.multiplePriceDiscount} ${styles.multiplePriceDiscountPadel}`}>{item.discount}</div> : null;
+                        })()}
                       </div>
                       <Button
                         text="Оставить заявку"

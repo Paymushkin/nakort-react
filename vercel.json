@@ -1,0 +1,5 @@
+{
+  "env": {
+    "SASS_SILENCE_DEPRECATIONS": "legacy-js-api"
+  }
+}

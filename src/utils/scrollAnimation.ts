@@ -17,7 +17,7 @@ export function initScrollToCenterAnimation(
   let cleanupExecuted = false;
 
   function checkPosition() {
-    if (cleanupExecuted) return;
+    if (cleanupExecuted || !element) return;
 
     const rect = element.getBoundingClientRect();
     const elementCenter = rect.top + rect.height / 2;
