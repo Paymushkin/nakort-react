@@ -2,7 +2,6 @@
 
 .reviews {
   margin: 200px 0;
-  overflow: visible;
 }
 
 .reviewsTitle {
@@ -17,7 +16,7 @@
 
 .reviewsCarousel {
   position: relative;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .reviewsSlide {
