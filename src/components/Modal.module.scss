@@ -230,3 +230,17 @@
   width: 100%;
   margin-top: 8px;
 }
+
+.modalFormMessage {
+  font-size: 14px;
+  line-height: 1.4;
+  margin-top: 8px;
+
+  &Error {
+    color: #e57373;
+  }
+
+  &Success {
+    color: #81c784;
+  }
+}

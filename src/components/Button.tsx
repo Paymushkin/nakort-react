@@ -12,6 +12,7 @@ interface ButtonProps {
   variant?: 'primary' | 'secondary' | 'additional-primary' | 'additional-secondary';
   onClick?: (e: React.MouseEvent) => void;
   'data-modal'?: string;
+  disabled?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -22,6 +23,7 @@ const Button: React.FC<ButtonProps> = ({
   variant = 'primary',
   onClick,
   'data-modal': dataModal,
+  disabled = false,
 }) => {
   // Определяем класс модификатора
   const variantClass = {
@@ -50,6 +52,7 @@ const Button: React.FC<ButtonProps> = ({
         className={combinedClassName}
         onClick={handleClick}
         data-modal={dataModal}
+        disabled={disabled}
       >
         <span className={styles.btnText}>{text}</span>
       </button>

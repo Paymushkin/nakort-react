@@ -1,22 +1,52 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Button from './Button';
 import { useModal } from '@/hooks/useModal';
+import { submitToSheets } from '@/lib/submitToSheets';
 import styles from './Modal.module.scss';
 
 const ModalCertificate: React.FC = () => {
   const { isOpen, close } = useModal('certificate');
   const formRef = useRef<HTMLFormElement>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+  const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const handleClose = () => {
+    setSubmitError('');
+    setSubmitSuccess(false);
     if (formRef.current) formRef.current.reset();
     close();
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Здесь можно добавить отправку данных на сервер
+    const form = formRef.current;
+    if (!form || isSubmitting) return;
+    if (!form.reportValidity()) return;
+    const fd = new FormData(form);
+    const payload = {
+      form: 'certificate' as const,
+      sport: String(fd.get('sport') || ''),
+      format: String(fd.get('format') || ''),
+      name: String(fd.get('name') || ''),
+      phone: String(fd.get('phone') || ''),
+      agreement1: fd.get('agreement1') ? 'on' : undefined,
+      agreement2: fd.get('agreement2') ? 'on' : undefined,
+    };
+    setIsSubmitting(true);
+    setSubmitError('');
+    setSubmitSuccess(false);
+    const { ok, error } = await submitToSheets(payload);
+    setIsSubmitting(false);
+    if (ok) {
+      setSubmitSuccess(true);
+      form.reset();
+      setTimeout(handleClose, 1500);
+    } else {
+      setSubmitError(error || 'Ошибка отправки');
+    }
   };
 
   if (!isOpen) return null;
@@ -36,8 +66,8 @@ const ModalCertificate: React.FC = () => {
             <h3 className={styles.modalSectionTitle}>Формат тренировки</h3>
             <div className={styles.modalField}>
               <div className={styles.modalSelectWrapper}>
-                <select className={styles.modalSelect} id="sport-certificate" name="sport" required>
-                  <option value="" disabled selected>
+                <select className={styles.modalSelect} id="sport-certificate" name="sport" required defaultValue="">
+                  <option value="" disabled>
                     Выберите вид спорта
                   </option>
                   <option value="tennis">Теннис</option>
@@ -52,8 +82,8 @@ const ModalCertificate: React.FC = () => {
             </div>
             <div className={styles.modalField}>
               <div className={styles.modalSelectWrapper}>
-                <select className={styles.modalSelect} id="format-certificate" name="format" required>
-                  <option value="" disabled selected>
+                <select className={styles.modalSelect} id="format-certificate" name="format" required defaultValue="">
+                  <option value="" disabled>
                     Выберите формат
                   </option>
                   <option value="group">Групповые</option>
@@ -120,12 +150,19 @@ const ModalCertificate: React.FC = () => {
               </label>
             </div>
           </div>
+          {submitError && (
+            <p className={`${styles.modalFormMessage} ${styles.modalFormMessageError}`}>{submitError}</p>
+          )}
+          {submitSuccess && (
+            <p className={`${styles.modalFormMessage} ${styles.modalFormMessageSuccess}`}>Заявка отправлена</p>
+          )}
           <Button
-            text="Записаться"
+            text={isSubmitting ? 'Отправка...' : 'Записаться'}
             href="#"
             variant="primary"
             className={styles.modalSubmit}
             type="button"
+            disabled={isSubmitting}
             onClick={(e) => {
               e.preventDefault();
               handleSubmit(e as unknown as React.FormEvent);
