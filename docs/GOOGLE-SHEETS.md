@@ -26,6 +26,16 @@ NEXT_PUBLIC_GOOGLE_SCRIPT_URL=https://script.google.com/macros/s/ВАШ_ID/exec
 
 После изменения `.env.local` перезапустите `npm run dev` / сборку.
 
+### Vercel
+
+В [Vercel](https://vercel.com): **Project → Settings → Environment Variables** добавьте:
+
+| Name                         | Value                                           |
+|------------------------------|-------------------------------------------------|
+| `NEXT_PUBLIC_GOOGLE_SCRIPT_URL` | `https://script.google.com/macros/s/ВАШ_ID/exec` |
+
+Укажите окружения: Production, Preview, Development. Сохраните и сделайте **Redeploy** (Deployments → ⋮ у последнего → Redeploy), чтобы переменная подхватилась.
+
 ## 3. Колонки в таблице
 
 При первой отправке скрипт создаёт заголовки на первом листе:
@@ -37,6 +47,28 @@ NEXT_PUBLIC_GOOGLE_SCRIPT_URL=https://script.google.com/macros/s/ВАШ_ID/exec
 - **Форма**: `training` или `certificate`
 - **Согласия**: `да`, если отмечены оба чекбокса
 
-## 4. Обновление скрипта
+## 4. Email-уведомления
+
+После каждой записи в таблицу автоматически отправляется email-уведомление:
+
+- **Получатель**: владелец таблицы (тот, кто создал таблицу)
+- **Содержание**: форма, вид спорта, формат, имя, телефон, дата заявки, ссылка на таблицу
+
+### Настройка дополнительного email
+
+Если нужно отправлять уведомления на другой email (например, менеджеру), в `scripts/NAKORT-Google-Apps-Script.gs` найдите функцию `sendNotificationEmail` и раскомментируйте строки:
+
+```javascript
+var NOTIFICATION_EMAIL = 'example@nakort.ru';
+if (NOTIFICATION_EMAIL && recipients.indexOf(NOTIFICATION_EMAIL) === -1) {
+  recipients.push(NOTIFICATION_EMAIL);
+}
+```
+
+Замените `example@nakort.ru` на нужный email. После этого обновите развёртывание (см. раздел 5).
+
+**Примечание**: При первом запуске Apps Script может запросить разрешение на отправку email. Нажмите **Разрешить**.
+
+## 5. Обновление скрипта
 
 После правок в `scripts/NAKORT-Google-Apps-Script.gs` в редакторе Apps Script: **Развернуть → Управление развёртываниями → Карандаш (изменить) → Версия: новая версия → Развернуть**. URL не меняется.

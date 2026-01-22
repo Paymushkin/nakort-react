@@ -48,6 +48,9 @@ function doPost(e) {
 
     sheet.appendRow([date, form, sport, format, name, phone, agreement]);
 
+    // Отправка email-уведомления (не блокирует ответ, если произойдёт ошибка)
+    sendNotificationEmail(data, date);
+
     return ContentService
       .createTextOutput(JSON.stringify({ ok: true }))
       .setMimeType(ContentService.MimeType.JSON);
@@ -55,5 +58,58 @@ function doPost(e) {
     return ContentService
       .createTextOutput(JSON.stringify({ ok: false, error: String(err) }))
       .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+/**
+ * Отправка email-уведомления о новой заявке.
+ * Получатели: владелец таблицы и/или заданный email в NOTIFICATION_EMAIL.
+ */
+function sendNotificationEmail(data, date) {
+  try {
+    var spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
+    var recipients = [];
+    
+    // Добавляем email владельца таблицы
+    try {
+      var ownerEmail = spreadsheet.getOwner().getEmail();
+      if (ownerEmail) recipients.push(ownerEmail);
+    } catch (e) {
+      // Если нет доступа к владельцу, пропускаем
+    }
+    
+    // Можно задать конкретный email для уведомлений (раскомментируйте и укажите):
+    // var NOTIFICATION_EMAIL = 'example@nakort.ru';
+    // if (NOTIFICATION_EMAIL && recipients.indexOf(NOTIFICATION_EMAIL) === -1) {
+    //   recipients.push(NOTIFICATION_EMAIL);
+    // }
+    
+    if (recipients.length === 0) return; // Нет получателей
+    
+    var formName = data.form === 'training' ? 'Запись на тренировку' : 'Покупка сертификата';
+    var sportName = data.sport === 'tennis' ? 'Теннис' : data.sport === 'padel' ? 'Падел' : data.sport;
+    var formatName = data.format === 'group' ? 'Групповые' : 
+                     data.format === 'personal' ? 'Персональные' : 
+                     data.format === 'split' ? 'Сплит' : data.format;
+    
+    var subject = 'Новая заявка: ' + formName + ' — ' + data.name;
+    var body = 'Новая заявка на сайте NAKORT\n\n' +
+               'Форма: ' + formName + '\n' +
+               'Вид спорта: ' + sportName + '\n' +
+               'Формат: ' + formatName + '\n' +
+               'Имя: ' + data.name + '\n' +
+               'Телефон: ' + data.phone + '\n' +
+               'Дата заявки: ' + date + '\n' +
+               'Согласия: ' + (data.agreement1 && data.agreement2 ? 'да' : 'нет') + '\n\n' +
+               'Таблица: https://docs.google.com/spreadsheets/d/' + SPREADSHEET_ID + '/edit';
+    
+    MailApp.sendEmail({
+      to: recipients.join(','),
+      subject: subject,
+      body: body
+    });
+  } catch (e) {
+    // Ошибка отправки email не должна ломать запись в таблицу
+    // Можно залогировать: Logger.log('Email error: ' + e);
   }
 }
